@@ -1,0 +1,11 @@
+.app{
+    margin: 10% 20%;
+    height: 60vh;
+    display: flex;
+    gap: 1em;
+}
+
+.app > div{
+    border: 1px solid black;
+    width: 100%;
+}
