@@ -1,7 +1,8 @@
 .app{
     margin: 10% 20%;
     height: 60vh;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
     gap: 1em;
 }
 

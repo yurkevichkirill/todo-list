@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToDo List</title>
-</head>
-<body>
-    <div class="app">
+export function createAllTasks(){
+    const app = document.querySelector(".app");
+    app.innerHTML = `
         <div class="menu">
             <div class="home">
                 <div class="home-header">Home</div>
@@ -26,6 +20,5 @@
         <div class="todo-work">
             <h1>All Tasks</h1>
         </div>
-    </div>
-</body>
-</html>
+    `
+}

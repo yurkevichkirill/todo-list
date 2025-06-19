@@ -9,7 +9,19 @@ export class ToDoItem{
 }
 
 export class Project{
-    constructor(todoItems, title, dueDate){
-        this.todoItems = todoItems;
+    constructor(title, dueDate){
+        this.todoItems = [];
+        this.title = title;
+        this.dueDate = dueDate;
     }
+}
+
+export let projects = [];
+
+export function addProject(project){
+    projects.push(project);
+}
+
+export function addToDo(project, todo){
+    project.todoItems.push(todo);
 }
