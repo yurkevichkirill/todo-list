@@ -10,3 +10,9 @@
     border: 1px solid black;
     width: 100%;
 }
+
+.menu, .home, .home-tabs, .projects, .projects-tabs{
+    display: flex;
+    flex-direction: column;
+}
+
