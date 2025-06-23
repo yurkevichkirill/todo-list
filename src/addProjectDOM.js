@@ -1,5 +1,4 @@
-import { projects } from "./todos";
-import { Project, addProject } from "./todos";
+import { projects, Project, addProject, fillProjects } from "./todos";
 import { addItemDOM } from "./addItemDOM";
 
 export function addProjectForm(addProjectBtn){
@@ -102,4 +101,12 @@ function isAddProjActive(){
 
 export function getProjectTitle(){
     return document.querySelector(".project-head").textContent;
+}
+
+export function printProjects(){
+    fillProjects();
+    console.log(projects);
+    for(const project of projects){
+        appendNewProject(project);
+    }
 }

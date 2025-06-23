@@ -1,3 +1,5 @@
+import { printProjects } from "./addProjectDOM";
+
 export function createAllTasks(){
     const app = document.querySelector(".app");
     app.innerHTML = `
@@ -5,10 +7,10 @@ export function createAllTasks(){
             <div class="home">
                 <div class="home-header">Home</div>
                 <div class="home-tabs">
-                    <div class="all-tasks">All Tasks</div>
-                    <div class="today">Today</div>
-                    <div class="week">Next 7 Days</div>
-                    <div class="important">Important</div>
+                    <button class="all-tasks">All Tasks</button>
+                    <button class="today">Today</button>
+                    <button class="week">Next 7 Days</button>
+                    <button class="important">Important</button>
                 </div>
             </div>
             <div class="projects">
@@ -17,8 +19,7 @@ export function createAllTasks(){
                 <button class="add-project">Add Project</button>
             </div>
         </div>
-        <div class="todo-work">
-            <h1>All Tasks</h1>
-        </div>
+        <div class="todo-work"></div>
     `
+    printProjects();
 }

@@ -21,7 +21,7 @@ export let projects = [];
 
 export function addProject(project){
     projects.push(project);
-    localStorageSave();
+    saveInStorage();
 }
 
 export function addToDo(project, todo){
@@ -36,6 +36,20 @@ export function getProjectByTitle(title){
     }
 }
 
-function localStorageSave(){
+export function saveInStorage(){
     localStorage.setItem("projects", JSON.stringify(projects));
+}
+
+export function getFromStorage(){
+    const projectsFromStorage = JSON.parse(localStorage.getItem("projects"));
+    if(!projectsFromStorage){
+        return [];
+    }
+    return projectsFromStorage;
+}
+
+export function fillProjects(){
+    for(const project of getFromStorage()){
+        projects.push();
+    }
 }
