@@ -11,8 +11,11 @@
     width: 100%;
 }
 
-.menu, .home, .home-tabs, .projects, .projects-tabs{
+.menu, .home, .home-tabs, .projects, .projects-tabs, .todo, .tasks{
     display: flex;
     flex-direction: column;
 }
 
+.todo-main{
+    display: flex;
+}

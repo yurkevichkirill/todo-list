@@ -3,26 +3,34 @@ import { getProjectTitle } from "./addProjectDOM";
 import { getProjectByTitle } from "./todos";
 
 export function addItemDOM(projectBtn){
-    createProjectHead(projectBtn);
+    createProjectHead(projectBtn);  
+    if(isAddItemBtn()){
+        return;
+    } 
     const addItemBtn = createAddItemBtn();
     createTaskAction(addItemBtn);
 }
 
 function createProjectHead(projectBtn){
     const todoWork = getTodoWork();
-    todoWork.innerHTML = ``;
-    const projectHead = document.createElement("div");
-    projectHead.className = "project-head";
+    const projectHead = document.querySelector(".project-head")
     projectHead.textContent = projectBtn.textContent;
-    todoWork.appendChild(projectHead);
 }
 
-function createAddItemBtn(){
+function createAddItemBtn(){ 
     const todoWork = getTodoWork();
     const addItemBtn = document.createElement("button");
+    addItemBtn.className = "add-task-btn";
     addItemBtn.textContent = "Add Task";
     todoWork.appendChild(addItemBtn);
     return addItemBtn;
+}
+
+function isAddItemBtn(){
+    if(document.querySelector(".add-task-btn")){
+        return true;
+    }
+    return false;
 }
 
 function getTodoWork(){
@@ -116,6 +124,41 @@ function createTodoDOM(event){
     const project = getProjectByTitle(projectTitle);
     addToDo(project, todo);
 
+    printProjectTodos();
+
+    console.log(project);
+
     removeAddItemForm();
 }
 
+function clearProjectTodos(){
+    const tasks = document.querySelector(".tasks");
+    tasks.innerHTML = ``;
+}
+
+export function printProjectTodos(){
+    clearProjectTodos();
+    const tasks = document.querySelector(".tasks");
+    const currentProject = getProjectByTitle(getProjectTitle());
+    for(const todo of currentProject.todoItems){
+        const todoDiv = createTaskDOM(todo);
+        tasks.appendChild(todoDiv);
+    }
+}
+
+function createTaskDOM(todo){
+    const todoDiv = document.createElement("div");
+    todoDiv.className = "todo";
+    todoDiv.innerHTML = `
+        <div class="todo-main">
+        <div class="todo-title">${todo.title}</div>
+        <div class="todo-btns">
+            <button>E</button>
+            <button>D</button>
+        </div>
+        </div>
+        <div class="todo-info">Priority: ${todo.priority} | Due Date: ${todo.dueDate}</div>
+        <div class="todo-description">${todo.description}</div>    
+    `;
+    return todoDiv;
+}

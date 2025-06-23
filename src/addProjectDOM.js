@@ -1,5 +1,5 @@
 import { projects, Project, addProject, fillProjects } from "./todos";
-import { addItemDOM } from "./addItemDOM";
+import { addItemDOM, printProjectTodos } from "./addItemDOM";
 
 export function addProjectForm(addProjectBtn){
     if(isAddProjActive()){
@@ -63,6 +63,7 @@ function createNewProjectDOM(newProject){
 function addProjectAction(newProjectBtn){
     newProjectBtn.addEventListener("click", () => {
         addItemDOM(newProjectBtn);
+        printProjectTodos();
     })
 }
 
