@@ -41,29 +41,29 @@ function addButtonProject(add, inputProject, addProjectForm){
         }
         const newProject = new Project(projectTitle, new Date());
         addProject(newProject);
-        appendNewProject(projectTitle);
+        appendNewProject(newProject);
         cleanAddProjectDOM(addProjectForm);
         console.log(projects);        
     });
 }
 
-function appendNewProject(title){
+function appendNewProject(newProject){
     const projectTabs = document.querySelector(".projects-tabs");
-    const newProject = createNewProjectDOM(title);
-    projectTabs.appendChild(newProject);
+    const newProjectDOM = createNewProjectDOM(newProject);
+    projectTabs.appendChild(newProjectDOM);
 }
 
-function createNewProjectDOM(title){
-    const newProject = document.createElement("button");
-    newProject.id = `${title}`;
-    addProjectAction(newProject);
-    newProject.textContent = title;
-    return newProject;
+function createNewProjectDOM(newProject){
+    const newProjectBtn = document.createElement("button");
+    newProjectBtn.id = `${newProject.title}`;
+    addProjectAction(newProjectBtn);
+    newProjectBtn.textContent = newProject.title;
+    return newProjectBtn;
 }
 
-function addProjectAction(newProject){
-    newProject.addEventListener("click", () => {
-        addItemDOM(newProject);
+function addProjectAction(newProjectBtn){
+    newProjectBtn.addEventListener("click", () => {
+        addItemDOM(newProjectBtn);
     })
 }
 
@@ -98,4 +98,8 @@ function isAddProjActive(){
         return true;
     }
     return false;
+}
+
+export function getProjectTitle(){
+    return document.querySelector(".project-head").textContent;
 }

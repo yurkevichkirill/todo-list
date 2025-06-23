@@ -1,3 +1,7 @@
+import { ToDoItem, addToDo} from "./todos";
+import { getProjectTitle } from "./addProjectDOM";
+import { getProjectByTitle } from "./todos";
+
 export function addItemDOM(projectBtn){
     createProjectHead(projectBtn);
     const addItemBtn = createAddItemBtn();
@@ -7,6 +11,7 @@ export function addItemDOM(projectBtn){
 function createProjectHead(projectBtn){
     const todoWork = getTodoWork();
     const projectHead = document.createElement("div");
+    projectHead.className = "project-head";
     projectHead.textContent = projectBtn.textContent;
     todoWork.appendChild(projectHead);
 }
@@ -58,14 +63,15 @@ function addItemForm(addItemBtn){
             </select>
         </div>
         <div class="item-btns">
-            <button class="item-add">Add</button>
-            <button class="item-cancel" type= reset>Cancel</button>
+            <button class="item-add" type=submit>Add</button>
+            <button class="item-cancel" type=reset>Cancel</button>
         </div>
     </form>
     `
-    addItemCancel(itemFormDiv);
     const parentDiv = addItemBtn.parentNode;
     parentDiv.insertBefore(itemFormDiv, addItemBtn);
+    addItemCancel();
+    formAddItem();
 }
 
 function isAddItemActive(){
@@ -75,9 +81,40 @@ function isAddItemActive(){
     return false;
 }
 
-function addItemCancel(itemFormDiv){
+function addItemCancel(){
     const cancel = document.querySelector(".item-cancel");
     cancel.addEventListener("click", () => {
-        itemFormDiv.remove();
+        removeAddItemForm();
+    });
+}
+
+function removeAddItemForm(){
+    const itemFormDiv = document.querySelector(".add-item");
+    itemFormDiv.remove();
+}
+
+function formAddItem(){
+    const add = document.querySelector(".item-add");
+    add.addEventListener("click", (event) => {
+        createTodoDOM(event);
     })
 }
+
+function createTodoDOM(event){
+    event.preventDefault();
+
+    const titleInput = document.querySelector("#title").value;
+    const descriptionInput = document.querySelector("#details").value;
+    const dateInput = document.querySelector("#date").value;
+    const priorityInput = document.querySelector("#priority").value;
+    const defaultDone = false;
+    const defaultFavour = false;
+    
+    const todo = new ToDoItem(titleInput, descriptionInput, dateInput, priorityInput, defaultDone, defaultFavour);
+    const projectTitle = getProjectTitle();
+    const project = getProjectByTitle(projectTitle);
+    addToDo(project, todo);
+
+    removeAddItemForm();
+}
+
