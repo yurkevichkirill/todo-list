@@ -50,6 +50,6 @@ export function getFromStorage(){
 
 export function fillProjects(){
     for(const project of getFromStorage()){
-        projects.push();
+        projects.push(project);
     }
 }
