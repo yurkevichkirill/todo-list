@@ -10,6 +10,7 @@ export function addItemDOM(projectBtn){
 
 function createProjectHead(projectBtn){
     const todoWork = getTodoWork();
+    todoWork.innerHTML = ``;
     const projectHead = document.createElement("div");
     projectHead.className = "project-head";
     projectHead.textContent = projectBtn.textContent;

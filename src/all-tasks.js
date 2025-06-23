@@ -19,7 +19,7 @@ export function createAllTasks(){
                 <button class="add-project">Add Project</button>
             </div>
         </div>
-        <div class="todo-work"></div>
+        <div class="todo-work">All Tasks</div>
     `
     printProjects();
 }
