@@ -42,7 +42,6 @@ function addButtonProject(add, inputProject, addProjectForm){
         addProject(newProject);
         appendNewProject(newProject);
         cleanAddProjectDOM(addProjectForm);
-        console.log(projects);        
     });
 }
 
@@ -107,9 +106,12 @@ export function getProjectTitle(){
 
 export function printProjects(){
     fillProjects();
-    console.log(projects);
     for(const project of projects){
         appendNewProject(project);
 
     }
+}
+
+export function getProjects(){
+    return projects;
 }

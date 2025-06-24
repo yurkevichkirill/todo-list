@@ -1,6 +1,5 @@
-import { ToDoItem, addToDo} from "./todos";
+import { ToDoItem, addToDo, getProjectByTitle, getAllTasks, sortTasksByDate} from "./todos";
 import { getProjectTitle } from "./addProjectDOM";
-import { getProjectByTitle } from "./todos";
 
 export function addItemDOM(projectBtn){
     createProjectHead(projectBtn);  
@@ -126,8 +125,6 @@ function createTodoDOM(event){
 
     printProjectTodos();
 
-    console.log(project);
-
     removeAddItemForm();
 }
 
@@ -161,4 +158,15 @@ function createTaskDOM(todo){
         <div class="todo-description">${todo.description}</div>    
     `;
     return todoDiv;
+}
+
+export function printAllTasks(){
+    const allTasks = getAllTasks();
+    sortTasksByDate(allTasks);
+    clearProjectTodos();
+    const tasks = document.querySelector(".tasks");
+    for(const task of allTasks){
+        const todoDiv = createTaskDOM(task);
+        tasks.appendChild(todoDiv);
+    }
 }

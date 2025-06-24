@@ -1,4 +1,5 @@
 import { printProjects } from "./addProjectDOM";
+import { printAllTasks } from "./addItemDOM";
 
 export function createAllTasks(){
     const app = document.querySelector(".app");
@@ -25,4 +26,5 @@ export function createAllTasks(){
         </div>
     `
     printProjects();
+    printAllTasks();
 }

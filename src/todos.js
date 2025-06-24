@@ -1,3 +1,5 @@
+import { compareAsc } from "date-fns";
+
 export class ToDoItem{
     constructor(title, description, dueDate, priority, isDone, isFavourite){
         this.title = title;
@@ -40,7 +42,7 @@ export function getProjectByTitle(title){
 function saveProjInStorage(){
     localStorage.setItem("projects", JSON.stringify(projects));
     for(const project of projects){
-        saveItemInStorage(project);
+        saveItemsInStorage(project);
     }
 }
 
@@ -75,4 +77,18 @@ function getItemsFromStorage(project){
         return [];
     }
     return todosFromStorage;
+}
+
+export function getAllTasks(){
+    const allTasks = [];
+    for(const project of projects){
+        for(const todo of project.todoItems){
+            allTasks.push(todo);
+        }
+    }
+    return allTasks;
+}
+
+export function sortTasksByDate(allTasks){
+    allTasks.sort((a, b) => compareAsc(a.dueDatete, b.dueDate));
 }
