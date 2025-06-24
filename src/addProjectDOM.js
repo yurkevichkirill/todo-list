@@ -64,6 +64,7 @@ function addProjectAction(newProjectBtn){
     newProjectBtn.addEventListener("click", () => {
         addItemDOM(newProjectBtn);
         printProjectTodos();
+        console.log(projects);
     })
 }
 
@@ -109,5 +110,6 @@ export function printProjects(){
     console.log(projects);
     for(const project of projects){
         appendNewProject(project);
+
     }
 }

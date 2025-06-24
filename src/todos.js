@@ -21,11 +21,12 @@ export let projects = [];
 
 export function addProject(project){
     projects.push(project);
-    saveInStorage();
+    saveProjInStorage();
 }
 
 export function addToDo(project, todo){
     project.todoItems.push(todo);
+    saveItemsInStorage(project);
 }
 
 export function getProjectByTitle(title){
@@ -36,11 +37,18 @@ export function getProjectByTitle(title){
     }
 }
 
-export function saveInStorage(){
+function saveProjInStorage(){
     localStorage.setItem("projects", JSON.stringify(projects));
+    for(const project of projects){
+        saveItemInStorage(project);
+    }
 }
 
-export function getFromStorage(){
+function saveItemsInStorage(project){
+    localStorage.setItem(`${project.title}`, JSON.stringify(project.todoItems));
+}
+
+function getProjFromStorage(){
     const projectsFromStorage = JSON.parse(localStorage.getItem("projects"));
     if(!projectsFromStorage){
         return [];
@@ -49,7 +57,22 @@ export function getFromStorage(){
 }
 
 export function fillProjects(){
-    for(const project of getFromStorage()){
+    for(const project of getProjFromStorage()){
         projects.push(project);
+        fillTodos(project);
     }
+}
+
+function fillTodos(project){
+    for(const todo of getItemsFromStorage(project)){
+        project.todoItems.push(todo);
+    }
+}
+
+function getItemsFromStorage(project){
+    const todosFromStorage = JSON.parse(localStorage.getItem(`${project.title}`));
+    if(!todosFromStorage){
+        return [];
+    }
+    return todosFromStorage;
 }
