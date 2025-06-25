@@ -152,6 +152,7 @@ function createTaskDOM(todo){
         <div class="todo-btns">
             <button>E</button>
             <button>D</button>
+            <button>F</button>
         </div>
         </div>
         <div class="todo-info">Priority: ${todo.priority} | Due Date: ${todo.dueDate}</div>

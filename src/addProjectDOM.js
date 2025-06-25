@@ -1,5 +1,6 @@
 import { projects, Project, addProject, fillProjects } from "./todos";
-import { addItemDOM, printProjectTodos } from "./addItemDOM";
+import { addItemDOM, printAllTasks, printProjectTodos } from "./addItemDOM";
+import dots from "./icons/dots-vertical.svg";
 
 export function addProjectForm(addProjectBtn){
     if(isAddProjActive()){
@@ -52,11 +53,18 @@ function appendNewProject(newProject){
 }
 
 function createNewProjectDOM(newProject){
+    const newProjectDiv = document.createElement("div");
+    newProjectDiv.className = "project-item";
     const newProjectBtn = document.createElement("button");
     newProjectBtn.id = `${newProject.title}`;
     addProjectAction(newProjectBtn);
     newProjectBtn.textContent = newProject.title;
-    return newProjectBtn;
+    const menuImg = document.createElement("img");
+    menuImg.className = "dots";
+    menuImg.src = dots;
+    newProjectDiv.appendChild(newProjectBtn);
+    newProjectDiv.appendChild(menuImg);
+    return newProjectDiv;
 }
 
 function addProjectAction(newProjectBtn){
@@ -114,4 +122,11 @@ export function printProjects(){
 
 export function getProjects(){
     return projects;
+}
+
+export function allTasksDOM(){
+    const allTasksBtn = document.querySelector(".all-tasks");
+    allTasksBtn.addEventListener("click", () => {
+        printAllTasks();
+    });
 }

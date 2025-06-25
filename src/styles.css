@@ -16,6 +16,10 @@
     flex-direction: column;
 }
 
-.todo-main{
+.todo-main, .project-item{
     display: flex;
+}
+
+.dots{
+    height: 16px;
 }

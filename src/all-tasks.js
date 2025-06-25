@@ -1,4 +1,4 @@
-import { printProjects } from "./addProjectDOM";
+import { printProjects, allTasksDOM } from "./addProjectDOM";
 import { printAllTasks } from "./addItemDOM";
 
 export function createAllTasks(){
@@ -25,6 +25,7 @@ export function createAllTasks(){
             <div class="tasks"></div>            
         </div>
     `
+    allTasksDOM();
     printProjects();
     printAllTasks();
 }
