@@ -69,7 +69,7 @@ export function getAllTasks(){
 }
 
 export function sortTasksByDate(allTasks){
-    allTasks.sort((a, b) => compareAsc(a.dueDatete, b.dueDate));
+    allTasks.sort((a, b) => compareAsc(a.dueDate, b.dueDate));
 }
 
 function clearStorage(){
