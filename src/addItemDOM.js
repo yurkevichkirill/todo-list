@@ -141,6 +141,7 @@ export function printProjectTodos(){
         const todoDiv = createTaskDOM(todo);
         tasks.appendChild(todoDiv);
     }
+    console.log(currentProject);
 }
 
 function createTaskDOM(todo){
@@ -162,6 +163,9 @@ function createTaskDOM(todo){
 }
 
 export function printAllTasks(){
+    setAllTasksHead();
+    removeAddTask();
+    removeAddForm();
     const allTasks = getAllTasks();
     sortTasksByDate(allTasks);
     clearProjectTodos();
@@ -170,4 +174,20 @@ export function printAllTasks(){
         const todoDiv = createTaskDOM(task);
         tasks.appendChild(todoDiv);
     }
+}
+
+function removeAddTask(){
+    if(document.querySelector(".add-task-btn")){
+        document.querySelector(".add-task-btn").remove();
+    }
+}
+
+function removeAddForm(){
+    if(document.querySelector(".add-item")){
+        document.querySelector(".add-item").remove();
+    }
+}
+
+function setAllTasksHead(){
+    document.querySelector(".project-head").textContent = "All Tasks";
 }

@@ -71,7 +71,6 @@ function addProjectAction(newProjectBtn){
     newProjectBtn.addEventListener("click", () => {
         addItemDOM(newProjectBtn);
         printProjectTodos();
-        console.log(projects);
     })
 }
 
@@ -116,7 +115,6 @@ export function printProjects(){
     fillProjects();
     for(const project of projects){
         appendNewProject(project);
-
     }
 }
 
@@ -128,5 +126,6 @@ export function allTasksDOM(){
     const allTasksBtn = document.querySelector(".all-tasks");
     allTasksBtn.addEventListener("click", () => {
         printAllTasks();
+        console.log(projects);
     });
 }
