@@ -59,12 +59,32 @@ function createNewProjectDOM(newProject){
     newProjectBtn.id = `${newProject.title}`;
     addProjectAction(newProjectBtn);
     newProjectBtn.textContent = newProject.title;
+    const editDiv = document.createElement("div");
+    editDiv.className = "edit-project-div";
     const menuImg = document.createElement("img");
     menuImg.className = "dots";
     menuImg.src = dots;
+    addDotsAction(menuImg);
+    editDiv.appendChild(menuImg);
     newProjectDiv.appendChild(newProjectBtn);
-    newProjectDiv.appendChild(menuImg);
+    newProjectDiv.appendChild(editDiv);
     return newProjectDiv;
+}
+
+function addDotsAction(dots){
+    dots.addEventListener("click", () => {
+        displayDotsProjForm(dots);
+    });
+}
+
+function displayDotsProjForm(dots){
+    const dotsProjForm = document.createElement("div");
+    dotsProjForm.className = "dots-project-form";
+    dotsProjForm.innerHTML = `
+    <button>Rename</button>
+    <button>Delete</button>
+    `
+    dots.after(dotsProjForm);
 }
 
 function addProjectAction(newProjectBtn){

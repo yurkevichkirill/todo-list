@@ -11,7 +11,7 @@
     width: 100%;
 }
 
-.menu, .home, .home-tabs, .projects, .projects-tabs, .todo, .tasks{
+.dots-project-form, .menu, .home, .home-tabs, .projects, .projects-tabs, .todo, .tasks{
     display: flex;
     flex-direction: column;
 }
@@ -20,6 +20,25 @@
     display: flex;
 }
 
+.project-item{
+    justify-content: space-between;
+}
+
+.project-item > button{
+    width: 100%;
+}
+
 .dots{
-    height: 16px;
+    height: 20px;
+}
+
+.dots-project-form{
+    position: absolute;
+    z-index: 1;
+    bottom: 22px;
+    right: 8px;
+}
+
+.edit-project-div{
+    position: relative;
 }
