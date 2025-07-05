@@ -1,4 +1,4 @@
-import { projects, Project, addProject, fillProjects, deleteProject, getProjectByTitle } from "./todos";
+import { projects, Project, addProject, fillProjects, deleteProject, getProjectByTitle, renameProject } from "./todos";
 import { addItemDOM, printAllTasks, printProjectTodos } from "./addItemDOM";
 import dots from "./icons/dots-vertical.svg";
 
@@ -91,15 +91,17 @@ function displayDotsProjForm(dots, title){
     renameBtn.textContent = "Rename";
 
     renameBtn.addEventListener("click", () => {
-        renameBtnAction();
-    })
+        renameBtnAction(title);
+        removeDotsMenu(dotsProjForm);
+    });
 
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Delete";
 
     deleteBtn.addEventListener("click", () => {
-        deleteBtnAction(title);
-        location.reload();
+        const projectBtn = dots.parentNode.previousElementSibling;
+        deleteBtnAction(projectBtn.textContent);
+        removeDotsMenu(dotsProjForm);
     })
 
     dotsProjForm.appendChild(renameBtn);
@@ -108,8 +110,83 @@ function displayDotsProjForm(dots, title){
     dots.after(dotsProjForm);
 }
 
+function removeDotsMenu(dotsProjForm){
+    dotsProjForm.remove();
+}
+
 function deleteBtnAction(title){
     deleteProject(getProjectByTitle(title));
+    location.reload();
+}
+
+function renameBtnAction(title){
+    renameProjectForm(title);
+}
+
+function renameProjectForm(title){
+    if(isRenameProjActive(title)){
+        return;
+    }
+    const parentDiv = document.querySelector(`#${title}`).parentNode;
+
+    const renameProjectForm = document.createElement("div");
+    renameProjectForm.className = `${title}-rename-form`;
+    parentDiv.after(renameProjectForm);
+
+    const inputProject = document.createElement("input");
+    inputProject.id = `${title}-rename-inp`;
+    inputProject.value = `${title}`;
+    renameProjectForm.appendChild(inputProject);
+    inputProject.focus();
+
+    const btnDiv = document.createElement("div");
+    renameProjectForm.appendChild(btnDiv);
+
+    const rename = document.createElement("button");
+    rename.textContent = "Rename";
+    renameProjectAction(rename, title);
+    btnDiv.appendChild(rename);
+
+    const cancel = document.createElement("button");
+    cancel.textContent = "Cancel";
+    cancelButtonProject(cancel, renameProjectForm);
+    btnDiv.appendChild(cancel);
+}
+
+function isRenameProjActive(title){
+    if(document.querySelector(`.${title}-rename-form`)){
+        return true;
+    }
+    return false;
+}
+
+function renameProjectAction(rename, title){
+    rename.addEventListener("click", () => {
+        const newTitle = document.querySelector(`#${title}-rename-inp`).value;
+        renameProject(title, newTitle);
+        renameProjectHead(title, newTitle);    
+        renameBtn(title, newTitle);
+        renameId(title, newTitle);
+        removeRenameForm(title);
+    })
+}
+
+function renameProjectHead(title, newTitle){
+    if(document.querySelector(".project-head").textContent === title){
+        document.querySelector(".project-head").textContent = newTitle;
+    }
+}
+
+function renameBtn(title, newTitle){
+    document.querySelector(`#${title}`).textContent = newTitle;
+}
+
+function renameId(title, newTitle){
+    document.querySelector(`#${title}`).id = newTitle;
+}
+
+function removeRenameForm(title){
+    document.querySelector(`.${title}-rename-form`).remove();
 }
 
 function isDotsProjFormActive(title){
@@ -178,6 +255,5 @@ export function allTasksDOM(){
     const allTasksBtn = document.querySelector(".all-tasks");
     allTasksBtn.addEventListener("click", () => {
         printAllTasks();
-        console.log(projects);
     });
 }

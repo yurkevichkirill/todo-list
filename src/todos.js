@@ -80,3 +80,12 @@ export function deleteProject(project){
     }
     saveProjInStorage();
 }
+
+export function renameProject(title, newTitle){
+    for(let i = 0; i < projects.length; i++){
+        if(projects[i].title === title){
+            projects[i].title = newTitle;
+        }
+    }
+    saveProjInStorage();
+}
