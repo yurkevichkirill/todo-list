@@ -72,6 +72,11 @@ export function sortTasksByDate(allTasks){
     allTasks.sort((a, b) => compareAsc(a.dueDate, b.dueDate));
 }
 
-function clearStorage(){
-    localStorage.clear();
+export function deleteProject(project){
+    for(let i = 0; i < projects.length; i++){
+        if(projects[i] === project){
+            projects.splice(i, 1);
+        }
+    }
+    saveProjInStorage();
 }

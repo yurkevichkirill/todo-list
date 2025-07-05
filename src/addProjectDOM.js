@@ -1,4 +1,4 @@
-import { projects, Project, addProject, fillProjects } from "./todos";
+import { projects, Project, addProject, fillProjects, deleteProject, getProjectByTitle } from "./todos";
 import { addItemDOM, printAllTasks, printProjectTodos } from "./addItemDOM";
 import dots from "./icons/dots-vertical.svg";
 
@@ -86,12 +86,32 @@ function displayDotsProjForm(dots, title){
     const dotsProjForm = document.createElement("div");
     dotsProjForm.className = "dots-project-form";
     dotsProjForm.id = `${title}-dots-menu`;
-    dotsProjForm.innerHTML = `
-    <button>Rename</button>
-    <button>Delete</button>
-    `
+
+    const renameBtn = document.createElement("button");
+    renameBtn.textContent = "Rename";
+
+    renameBtn.addEventListener("click", () => {
+        renameBtnAction();
+    })
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Delete";
+
+    deleteBtn.addEventListener("click", () => {
+        deleteBtnAction(title);
+        location.reload();
+    })
+
+    dotsProjForm.appendChild(renameBtn);
+    dotsProjForm.appendChild(deleteBtn);
+
     dots.after(dotsProjForm);
 }
+
+function deleteBtnAction(title){
+    deleteProject(getProjectByTitle(title));
+}
+
 function isDotsProjFormActive(title){
     if(document.querySelector(`#${title}-dots-menu`)){
         return true;
