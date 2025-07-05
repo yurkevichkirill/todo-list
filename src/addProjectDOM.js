@@ -64,27 +64,39 @@ function createNewProjectDOM(newProject){
     const menuImg = document.createElement("img");
     menuImg.className = "dots";
     menuImg.src = dots;
-    addDotsAction(menuImg);
+    addDotsAction(menuImg, newProject.title);
     editDiv.appendChild(menuImg);
     newProjectDiv.appendChild(newProjectBtn);
     newProjectDiv.appendChild(editDiv);
     return newProjectDiv;
 }
 
-function addDotsAction(dots){
+function addDotsAction(dots, title){
     dots.addEventListener("click", () => {
-        displayDotsProjForm(dots);
+        if(isDotsProjFormActive(title)){
+            document.querySelector(`#${title}-dots-menu`).remove();
+        }
+        else{
+            displayDotsProjForm(dots, title);
+        }
     });
 }
 
-function displayDotsProjForm(dots){
+function displayDotsProjForm(dots, title){
     const dotsProjForm = document.createElement("div");
     dotsProjForm.className = "dots-project-form";
+    dotsProjForm.id = `${title}-dots-menu`;
     dotsProjForm.innerHTML = `
     <button>Rename</button>
     <button>Delete</button>
     `
     dots.after(dotsProjForm);
+}
+function isDotsProjFormActive(title){
+    if(document.querySelector(`#${title}-dots-menu`)){
+        return true;
+    }
+    return false;
 }
 
 function addProjectAction(newProjectBtn){
