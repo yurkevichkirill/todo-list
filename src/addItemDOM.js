@@ -1,4 +1,4 @@
-import { ToDoItem, addToDo, getProjectByTitle, getAllTasks, sortTasksByDate, editTodo, deleteTodo, addToFavours} from "./todos";
+import { ToDoItem, addToDo, getProjectByTitle, getAllTasks, sortTasksByDate, editTodo, deleteTodo, addToFavours, getFavours} from "./todos";
 import { getProjectTitle } from "./addProjectDOM";
 import deleteURL from "./icons/delete.svg";
 import favourURL from "./icons/star-outline.svg";
@@ -154,6 +154,10 @@ function createTaskDOM(todo){
     const todoMain = document.createElement("div");
     todoMain.className = "todo-main";
     todoDiv.appendChild(todoMain);
+
+    const executed = document.createElement("div");
+    executed.className = "executed";
+    todoMain.appendChild(executed);
 
     const todoTitle = document.createElement("div");
     todoTitle.className = "todo-title";
@@ -390,6 +394,9 @@ function deleteTaskDOM(todo){
 function favourTaskAction(todo, favourBtn, favourImg){
     favourBtn.addEventListener("click", () => {
         addToFavourDOM(todo, favourImg);
+        if(document.querySelector(".project-head").textContent === "Important"){
+            printFavours();
+        }
     })
 }
 
@@ -405,7 +412,6 @@ function changeFavourColor(todo, favourImg){
     else if (todo.isFavourite === false){
         favourImg.style.backgroundColor = "grey";
     }
-    console.log(todo.isFavourite);
 }
 
 export function printAllTasks(){
@@ -436,4 +442,14 @@ function removeAddForm(){
 
 function setAllTasksHead(){
     document.querySelector(".project-head").textContent = "All Tasks";
+}
+
+export function printFavours(){
+    const favours = getFavours();
+    const tasks = document.querySelector(".tasks");
+    clearProjectTodos();
+    for(const task of favours){
+        const todoDiv = createTaskDOM(task);
+        tasks.appendChild(todoDiv);
+    }
 }

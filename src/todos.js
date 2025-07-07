@@ -130,3 +130,9 @@ export function addToFavours(todo){
     }
     saveProjInStorage();
 }
+
+export function getFavours(){
+    const todos = getAllTasks();
+    sortTasksByDate(todos);
+    return todos.filter((todo) => todo.isFavourite === true) || [];
+}

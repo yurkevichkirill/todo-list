@@ -56,3 +56,13 @@
     margin: 0;
     padding: 0;
 }
+
+.executed{
+    border: 1px solid black;
+    display: flex;
+    width: 10px;
+    margin: 2px 2px 8px 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
