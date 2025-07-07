@@ -103,3 +103,7 @@ export function editTodo(taskTitle, newTitle, newDescription, newDate, newPriori
     }
     saveProjInStorage();
 }
+
+export function deleteTodo(){
+    
+}

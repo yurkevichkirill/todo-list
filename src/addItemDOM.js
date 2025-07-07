@@ -1,4 +1,4 @@
-import { ToDoItem, addToDo, getProjectByTitle, getAllTasks, sortTasksByDate, editTodo} from "./todos";
+import { ToDoItem, addToDo, getProjectByTitle, getAllTasks, sortTasksByDate, editTodo, deleteTodo} from "./todos";
 import { getProjectTitle } from "./addProjectDOM";
 import deleteURL from "./icons/delete.svg";
 import favourURL from "./icons/star-outline.svg";
@@ -150,24 +150,6 @@ function createTaskDOM(todo){
     const todoDiv = document.createElement("div");
     todoDiv.className = "todo";
     todoDiv.id = `${todo.title}`;
-    // todoDiv.innerHTML = `
-    //     <div class="todo-main">
-    //         <div class="todo-title">${todo.title}</div>
-    //         <div class="todo-btns">
-    //             <button class="edit-btn">
-    //                 <img src=${editURL} alt="edit">
-    //             </button>
-    //             <button class="delete-btn">
-    //                 <img src="${deleteURL}" alt="delete">
-    //             </button>
-    //             <button class="favour-btn">
-    //                 <img src="${favourURL}" alt="star">
-    //             </button>
-    //         </div>
-    //     </div>
-    //     <div class="todo-info">Priority: ${todo.priority} | Due Date: ${todo.dueDate}</div>
-    //     <div class="todo-description">${todo.description}</div>    
-    // `;
 
     const todoMain = document.createElement("div");
     todoMain.className = "todo-main";
@@ -191,7 +173,7 @@ function createTaskDOM(todo){
     todoBtns.appendChild(editBtn);
 
     const deleteBtn = document.createElement("button");
-    editBtn.className = "delete-btn";
+    deleteBtn.className = "delete-btn";
     const deleteImg = document.createElement("img");
     deleteImg.src = deleteURL;
     deleteImg.alt = "delete";
@@ -217,7 +199,7 @@ function createTaskDOM(todo){
     todoDiv.appendChild(todoDescription);
 
     editTaskAction(todo, editBtn, todoDiv);
-    // deleteTaskAction(todo);
+    // deleteTaskAction(todo, deleteBtn);
     // favourTaskAction(todo);    
 
     return todoDiv;
@@ -235,36 +217,142 @@ function editItemForm(todo, todoDiv){
     }
     const itemFormDiv = document.createElement("div");
     itemFormDiv.className = "edit-item";
-    itemFormDiv.innerHTML = `
-    <form>
-        <div class="formItem">
-            <label for="title">Title:</label>
-            <input type="text" id="title" value=${todo.title} required>
-        </div>
-        <div class="formItem">
-            <label for="details">Datails(optional)</label>
-            <input type="text" id="details" value=${todo.description}>
-        </div>
-        <div class="formItem">
-            <label for="date">Date:</label>
-            <input type="date" id="date" value=${todo.dueDate} required>
-        </div>
-        <div class="formItem">
-            <label for="priority">Priority</label>
-            <select name="priority" id="priority">
-                <option value="low">Low</option>
-                <option value="medium" selected>Medium</option>
-                <option value="high">High</option>
-            </select>
-        </div>
-        <div class="item-btns">
-            <button class="item-edit" type=submit>Edit</button>
-            <button class="item-cancel" type=reset>Cancel</button>
-        </div>
-    </form>
-    `
-    const parentDiv = document.querySelector(`#${todo.title}`);
-    parentDiv.after(itemFormDiv);
+    // itemFormDiv.innerHTML = `
+    // <form>
+    //     <div class="formItem">
+    //         <label for="title">Title:</label>
+    //         <input type="text" id="title" value=${todo.title} required>
+    //     </div>
+    //     <div class="formItem">
+    //         <label for="details">Datails(optional)</label>
+    //         <input type="text" id="details" value=${todo.description}>
+    //     </div>
+    //     <div class="formItem">
+    //         <label for="date">Date:</label>
+    //         <input type="date" id="date" value=${todo.dueDate} required>
+    //     </div>
+    //     <div class="formItem">
+    //         <label for="priority">Priority</label>
+    //         <select name="priority" id="priority">
+    //             <option value="low">Low</option>
+    //             <option value="medium" selected>Medium</option>
+    //             <option value="high">High</option>
+    //         </select>
+    //     </div>
+    //     <div class="item-btns">
+    //         <button class="item-edit" type=submit>Edit</button>
+    //         <button class="item-cancel" type=reset>Cancel</button>
+    //     </div>
+    // </form>
+    // `;
+
+    const form = document.createElement('form');
+    itemFormDiv.append(form);
+
+    const titleGroup = document.createElement('div');
+    titleGroup.className = 'formItem';
+
+    const titleLabel = document.createElement('label');
+    titleLabel.htmlFor = 'title';
+    titleLabel.textContent = 'Title:';
+
+    const titleInput = document.createElement('input');
+    titleInput.type = 'text';
+    titleInput.id = 'title';
+    titleInput.value = todo.title || '';
+    titleInput.required = true;
+
+    titleGroup.append(titleLabel, titleInput);
+
+    const detailsGroup = document.createElement('div');
+    detailsGroup.className = 'formItem';
+
+    const detailsLabel = document.createElement('label');
+    detailsLabel.htmlFor = 'details';
+    detailsLabel.textContent = 'Details(optional)';
+
+    const detailsInput = document.createElement('input');
+    detailsInput.type = 'text';
+    detailsInput.id = 'details';
+    detailsInput.value = todo.description || '';
+
+    detailsGroup.append(detailsLabel, detailsInput);
+
+    const dateGroup = document.createElement('div');
+    dateGroup.className = 'formItem';
+
+    const dateLabel = document.createElement('label');
+    dateLabel.htmlFor = 'date';
+    dateLabel.textContent = 'Date:';
+
+    const dateInput = document.createElement('input');
+    dateInput.type = 'date';
+    dateInput.id = 'date';
+    dateInput.value = todo.dueDate || '';
+    dateInput.required = true;
+
+    dateGroup.append(dateLabel, dateInput);
+
+    const priorityGroup = document.createElement('div');
+    priorityGroup.className = 'formItem';
+
+    const priorityLabel = document.createElement('label');
+    priorityLabel.htmlFor = 'priority';
+    priorityLabel.textContent = 'Priority';
+
+    const prioritySelect = document.createElement('select');
+    prioritySelect.name = 'priority';
+    prioritySelect.id = 'priority';
+
+    const optionLow = document.createElement('option');
+    optionLow.value = 'low';
+    optionLow.textContent = 'Low';
+
+    const optionMedium = document.createElement('option');
+    optionMedium.value = 'medium';
+    optionMedium.textContent = 'Medium';
+    optionMedium.selected = true;
+
+    const optionHigh = document.createElement('option');
+    optionHigh.value = 'high';
+    optionHigh.textContent = 'High';
+
+    prioritySelect.append(optionLow, optionMedium, optionHigh);
+
+    if (todo.priority) {
+        const optionToSelect = prioritySelect.querySelector(`[value="${todo.priority}"]`);
+        if (optionToSelect) {
+            optionToSelect.selected = true;
+            optionMedium.selected = false;
+        }
+    }
+
+    priorityGroup.append(priorityLabel, prioritySelect);
+
+    const buttonsGroup = document.createElement('div');
+    buttonsGroup.className = 'item-btns';
+
+    const editButton = document.createElement('button');
+    editButton.className = 'item-edit';
+    editButton.type = 'submit';
+    editButton.textContent = 'Edit';
+
+    const cancelButton = document.createElement('button');
+    cancelButton.className = 'item-cancel';
+    cancelButton.type = 'reset';
+    cancelButton.textContent = 'Cancel';
+
+    buttonsGroup.append(editButton, cancelButton);
+
+    form.append(
+        titleGroup,
+        detailsGroup,
+        dateGroup,
+        priorityGroup,
+        buttonsGroup
+    );
+
+    todoDiv.after(itemFormDiv);
     editItemCancel();
     formEditItem(todo, todoDiv);
 }
@@ -306,8 +394,17 @@ function editTodoDOM(event, todo, todoDiv){
 
     editTodo(todoDiv.id, titleInput, descriptionInput, dateInput, priorityInput);
 
-    todoDiv.innerHTML = ``;
-    todoDiv.appendChild(createTaskDOM(todo));
+    todoDiv.replaceWith(createTaskDOM(todo));
+}
+
+function deleteTaskAction(todo, deleteBtn){
+    deleteBtn.addEventListener("click", () => {
+        deleteTaskDOM(todo);
+    });
+}
+
+function deleteTaskDOM(todo){
+    deleteTodo(todo);
 }
 
 export function printAllTasks(){
