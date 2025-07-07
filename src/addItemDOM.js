@@ -1,8 +1,9 @@
-import { ToDoItem, addToDo, getProjectByTitle, getAllTasks, sortTasksByDate, editTodo, deleteTodo, addToFavours, getFavours} from "./todos";
+import { ToDoItem, addToDo, getProjectByTitle, getAllTasks, sortTasksByDate, editTodo, deleteTodo, addToFavours, getFavours, changeDone} from "./todos";
 import { getProjectTitle } from "./addProjectDOM";
 import deleteURL from "./icons/delete.svg";
-import favourURL from "./icons/star-outline.svg";
+import favourURL from "./icons/star.svg";
 import editURL from "./icons/text-box-edit-outline.svg";
+import check from "./icons/check.svg";
 
 export function addItemDOM(projectBtn){
     createProjectHead(projectBtn);  
@@ -157,6 +158,7 @@ function createTaskDOM(todo){
 
     const executed = document.createElement("div");
     executed.className = "executed";
+    changeDoneStatus(todo, executed);
     todoMain.appendChild(executed);
 
     const todoTitle = document.createElement("div");
@@ -187,6 +189,7 @@ function createTaskDOM(todo){
     const favourBtn = document.createElement("button");
     favourBtn.className = "favour-btn";
     const favourImg = document.createElement("img");
+    favourImg.className = "favour-img";
     changeFavourColor(todo, favourImg);
     favourImg.src = favourURL;
     favourImg.alt = "favour";
@@ -207,6 +210,7 @@ function createTaskDOM(todo){
     editTaskAction(todo, editBtn, todoDiv);
     deleteTaskAction(todo, deleteBtn);
     favourTaskAction(todo, favourBtn, favourImg);    
+    makeDoneAction(todo, executed);
 
     return todoDiv;
 }
@@ -407,11 +411,39 @@ function addToFavourDOM(todo, favourImg){
 
 function changeFavourColor(todo, favourImg){
     if(todo.isFavourite === true){
-        favourImg.style.backgroundColor = "yellow";
+        favourImg.classList.add("yellow-star");
     }
     else if (todo.isFavourite === false){
-        favourImg.style.backgroundColor = "grey";
+        favourImg.classList.remove("yellow-star");
     }
+}
+
+function makeDoneAction(todo, executed){
+    executed.addEventListener("click", () => {
+        makeDoneDOM(todo, executed);
+    })
+}
+
+function makeDoneDOM(todo, executed){
+    changeDone(todo);
+    changeDoneStatus(todo, executed);
+}
+
+function changeDoneStatus(todo, executed){
+    if(todo.isDone === true){
+        const isDone = isDoneStatus();
+        executed.append(isDone);
+    }
+    else if (todo.isDone === false){
+        executed.innerHTML = "";
+    }
+}
+
+function isDoneStatus(){
+    const isDone = document.createElement("img");
+    isDone.src = check;
+    isDone.className = "check";
+    return isDone;
 }
 
 export function printAllTasks(){
@@ -453,3 +485,4 @@ export function printFavours(){
         tasks.appendChild(todoDiv);
     }
 }
+

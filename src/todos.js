@@ -136,3 +136,19 @@ export function getFavours(){
     sortTasksByDate(todos);
     return todos.filter((todo) => todo.isFavourite === true) || [];
 }
+
+export function changeDone(todo){
+    for(let i = 0; i < projects.length; i++){
+        for(let j = 0; j < projects[i].todoItems.length; j++){
+            if(projects[i].todoItems[j] === todo){
+                if(projects[i].todoItems[j].isDone === false){
+                    projects[i].todoItems[j].isDone = true;
+                }
+                else{
+                    projects[i].todoItems[j].isDone = false;
+                }
+            }
+        }
+    }
+    saveProjInStorage();
+}

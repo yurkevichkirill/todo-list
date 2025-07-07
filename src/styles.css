@@ -59,10 +59,43 @@
 
 .executed{
     border: 1px solid black;
+    position: relative;
     display: flex;
     width: 10px;
     margin: 2px 2px 8px 0;
     width: 10px;
     height: 10px;
     border-radius: 50%;
+}
+
+.check{
+    width: 250%;
+    height: 250%;
+    position: absolute;
+    right: -10px; 
+    top: -10px;
+}
+
+.check{
+  filter: 
+    brightness(0)      /* Делаем изображение черным */
+    saturate(100%)     /* Усиливаем цвет */
+    invert(48%)        /* Инвертируем в зеленый */
+    sepia(79%)         /* Добавляем оттенок */
+    saturate(2476%) 
+    hue-rotate(86deg) 
+    brightness(118%) 
+    contrast(119%);
+}
+
+.yellow-star{
+  filter: 
+    brightness(0)      /* Делаем изображение черным */
+    saturate(100%)     /* Усиливаем цвет */
+    invert(48%)        /* Инвертируем в зеленый */
+    sepia(100%)         /* Добавляем оттенок */
+    saturate(2476%) 
+    hue-rotate(15deg) 
+    brightness(118%) 
+    contrast(119%);
 }
