@@ -104,6 +104,13 @@ export function editTodo(taskTitle, newTitle, newDescription, newDate, newPriori
     saveProjInStorage();
 }
 
-export function deleteTodo(){
-    
+export function deleteTodo(todo){
+    for(let i = 0; i < projects.length; i++){
+        for(let j = 0; j < projects[i].todoItems.length; j++){
+            if(projects[i].todoItems[j] === todo){
+                projects[i].todoItems.splice(j, 1);
+            }
+        }
+    }
+    saveProjInStorage();
 }

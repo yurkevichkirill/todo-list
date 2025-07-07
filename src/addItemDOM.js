@@ -199,7 +199,7 @@ function createTaskDOM(todo){
     todoDiv.appendChild(todoDescription);
 
     editTaskAction(todo, editBtn, todoDiv);
-    // deleteTaskAction(todo, deleteBtn);
+    deleteTaskAction(todo, deleteBtn);
     // favourTaskAction(todo);    
 
     return todoDiv;
@@ -217,34 +217,6 @@ function editItemForm(todo, todoDiv){
     }
     const itemFormDiv = document.createElement("div");
     itemFormDiv.className = "edit-item";
-    // itemFormDiv.innerHTML = `
-    // <form>
-    //     <div class="formItem">
-    //         <label for="title">Title:</label>
-    //         <input type="text" id="title" value=${todo.title} required>
-    //     </div>
-    //     <div class="formItem">
-    //         <label for="details">Datails(optional)</label>
-    //         <input type="text" id="details" value=${todo.description}>
-    //     </div>
-    //     <div class="formItem">
-    //         <label for="date">Date:</label>
-    //         <input type="date" id="date" value=${todo.dueDate} required>
-    //     </div>
-    //     <div class="formItem">
-    //         <label for="priority">Priority</label>
-    //         <select name="priority" id="priority">
-    //             <option value="low">Low</option>
-    //             <option value="medium" selected>Medium</option>
-    //             <option value="high">High</option>
-    //         </select>
-    //     </div>
-    //     <div class="item-btns">
-    //         <button class="item-edit" type=submit>Edit</button>
-    //         <button class="item-cancel" type=reset>Cancel</button>
-    //     </div>
-    // </form>
-    // `;
 
     const form = document.createElement('form');
     itemFormDiv.append(form);
@@ -405,6 +377,12 @@ function deleteTaskAction(todo, deleteBtn){
 
 function deleteTaskDOM(todo){
     deleteTodo(todo);
+    if(document.querySelector(".project-head").textContent === "All Tasks"){
+        printAllTasks();
+    }
+    else{
+        printProjectTodos();
+    }
 }
 
 export function printAllTasks(){
