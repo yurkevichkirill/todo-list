@@ -1,9 +1,10 @@
-import { ToDoItem, addToDo, getProjectByTitle, getAllTasks, sortTasksByDate, editTodo, deleteTodo, addToFavours, getFavours, changeDone} from "./todos";
+import { ToDoItem, addToDo, getProjectByTitle, getAllTasks, sortTasksByDate, editTodo, deleteTodo, addToFavours, getFavours, changeDone, getToday} from "./todos";
 import { getProjectTitle } from "./addProjectDOM";
 import deleteURL from "./icons/delete.svg";
 import favourURL from "./icons/star.svg";
 import editURL from "./icons/text-box-edit-outline.svg";
 import check from "./icons/check.svg";
+import { getWeek } from "date-fns";
 
 export function addItemDOM(projectBtn){
     createProjectHead(projectBtn);  
@@ -486,3 +487,22 @@ export function printFavours(){
     }
 }
 
+export function printToday(){
+    const today = getToday();
+    const tasks = document.querySelector(".tasks");
+    clearProjectTodos();
+    for(const task of today){
+        const todoDiv = createTaskDOM(task);
+        tasks.appendChild(todoDiv);
+    }
+}
+
+export function printWeek(){
+    const week = getWeek();
+    const tasks = document.querySelector(".tasks");
+    clearProjectTodos();
+    for(const task of week){
+        const todoDiv = createTaskDOM(task);
+        tasks.appendChild(todoDiv);
+    }
+}

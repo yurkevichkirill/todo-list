@@ -1,4 +1,4 @@
-import { compareAsc } from "date-fns";
+import { compareAsc, isThisWeek, isToday, isWeekend } from "date-fns";
 
 export class ToDoItem{
     constructor(title, description, dueDate, priority, isDone, isFavourite){
@@ -12,10 +12,9 @@ export class ToDoItem{
 }
 
 export class Project{
-    constructor(title, dueDate){
+    constructor(title){
         this.todoItems = [];
         this.title = title;
-        this.dueDate = dueDate;
     }
 }
 
@@ -151,4 +150,15 @@ export function changeDone(todo){
         }
     }
     saveProjInStorage();
+}
+
+export function getToday(){
+    const todos = getAllTasks();
+    return todos.filter((todo) => isToday(todo.dueDate)) || [];
+}
+
+export function getWeek(){
+    const todos = getAllTasks();
+    sortTasksByDate(todos);
+    return todos.filter((todo) => isThisWeek(todo.dueDate)) || [];
 }

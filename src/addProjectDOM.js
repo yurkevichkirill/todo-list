@@ -39,7 +39,7 @@ function addButtonProject(add, inputProject, addProjectForm){
         if(!isUnique(projectTitle, projects)){
             return;
         }
-        const newProject = new Project(projectTitle, new Date());
+        const newProject = new Project(projectTitle);
         addProject(newProject);
         appendNewProject(newProject);
         cleanAddProjectDOM(addProjectForm);

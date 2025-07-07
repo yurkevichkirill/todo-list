@@ -10,7 +10,7 @@ export function createAllTasks(){
                 <div class="home-tabs">
                     <button class="all-tasks">All Tasks</button>
                     <button class="today">Today</button>
-                    <button class="week">Next 7 Days</button>
+                    <button class="week">Week</button>
                     <button class="important">Important</button>
                 </div>
             </div>
