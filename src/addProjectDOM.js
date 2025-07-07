@@ -1,5 +1,5 @@
 import { projects, Project, addProject, fillProjects, deleteProject, getProjectByTitle, renameProject } from "./todos";
-import { addItemDOM, printAllTasks, printProjectTodos } from "./addItemDOM";
+import { addItemDOM, printAllTasks, printTodos } from "./addItemDOM";
 import dots from "./icons/dots-vertical.svg";
 
 export function addProjectForm(addProjectBtn){
@@ -199,7 +199,7 @@ function isDotsProjFormActive(title){
 function addProjectAction(newProjectBtn){
     newProjectBtn.addEventListener("click", () => {
         addItemDOM(newProjectBtn);
-        printProjectTodos();
+        printTodos();
     })
 }
 
@@ -236,7 +236,7 @@ function isAddProjActive(){
     return false;
 }
 
-export function getProjectTitle(){
+export function getTitle(){
     return document.querySelector(".project-head").textContent;
 }
 

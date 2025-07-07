@@ -1,10 +1,9 @@
-import { ToDoItem, addToDo, getProjectByTitle, getAllTasks, sortTasksByDate, editTodo, deleteTodo, addToFavours, getFavours, changeDone, getToday} from "./todos";
-import { getProjectTitle } from "./addProjectDOM";
+import { ToDoItem, addToDo, getProjectByTitle, getAllTasks, sortTasksByDate, editTodo, deleteTodo, addToFavours, getFavours, changeDone, getToday, getCurrentWeek} from "./todos";
+import { getTitle } from "./addProjectDOM";
 import deleteURL from "./icons/delete.svg";
 import favourURL from "./icons/star.svg";
 import editURL from "./icons/text-box-edit-outline.svg";
 import check from "./icons/check.svg";
-import { getWeek } from "date-fns";
 
 export function addItemDOM(projectBtn){
     createProjectHead(projectBtn);  
@@ -124,11 +123,11 @@ function createTodoDOM(event){
     const defaultFavour = false;
     
     const todo = new ToDoItem(titleInput, descriptionInput, dateInput, priorityInput, defaultDone, defaultFavour);
-    const projectTitle = getProjectTitle();
+    const projectTitle = getTitle();
     const project = getProjectByTitle(projectTitle);
     addToDo(project, todo);
 
-    printProjectTodos();
+    printTodos();
 
     removeAddItemForm();
 }
@@ -138,14 +137,33 @@ function clearProjectTodos(){
     tasks.innerHTML = ``;
 }
 
-export function printProjectTodos(){
+export function printTodos(){
     clearProjectTodos();
+    const title = getTitle();
+    if(title === "All tasks"){
+        printAllTasks();
+    }
+    else if(title === "Today"){
+        printToday();
+    }
+    else if(title === "Week"){
+        printWeek();
+    }
+    else if(title === "Important"){
+        printFavours();
+    }
+    else{
+        printProjectTodos();
+    }
+}
+
+function printProjectTodos(){
     const tasks = document.querySelector(".tasks");
-    const currentProject = getProjectByTitle(getProjectTitle());
+    const currentProject = getProjectByTitle(getTitle());
     for(const todo of currentProject.todoItems){
         const todoDiv = createTaskDOM(todo);
         tasks.appendChild(todoDiv);
-    }
+    }   
 }
 
 function createTaskDOM(todo){
@@ -392,7 +410,7 @@ function deleteTaskDOM(todo){
         printAllTasks();
     }
     else{
-        printProjectTodos();
+        printTodos();
     }
 }
 
@@ -498,7 +516,7 @@ export function printToday(){
 }
 
 export function printWeek(){
-    const week = getWeek();
+    const week = getCurrentWeek();
     const tasks = document.querySelector(".tasks");
     clearProjectTodos();
     for(const task of week){

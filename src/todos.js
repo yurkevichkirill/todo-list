@@ -157,7 +157,7 @@ export function getToday(){
     return todos.filter((todo) => isToday(todo.dueDate)) || [];
 }
 
-export function getWeek(){
+export function getCurrentWeek(){
     const todos = getAllTasks();
     sortTasksByDate(todos);
     return todos.filter((todo) => isThisWeek(todo.dueDate)) || [];
