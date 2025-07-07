@@ -16,7 +16,7 @@
     flex-direction: column;
 }
 
-.todo-main, .project-item{
+.todo-main, .project-item, .todo-btns{
     display: flex;
 }
 
@@ -41,4 +41,18 @@
 
 .edit-project-div{
     position: relative;
+}
+
+.todo-btns > button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    
+}
+
+.todo-btns img{
+    height: 20px;
+    margin: 0;
+    padding: 0;
 }

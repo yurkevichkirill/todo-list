@@ -89,3 +89,17 @@ export function renameProject(title, newTitle){
     }
     saveProjInStorage();
 }
+
+export function editTodo(taskTitle, newTitle, newDescription, newDate, newPriority){
+    for(let i = 0; i < projects.length; i++){
+        for(let j = 0; j < projects[i].todoItems.length; j++){
+            if(projects[i].todoItems[j].title === taskTitle){
+                projects[i].todoItems[j].title = newTitle;
+                projects[i].todoItems[j].description = newDescription;
+                projects[i].todoItems[j].dueDate = newDate;
+                projects[i].todoItems[j].priority = newPriority;
+            }
+        }
+    }
+    saveProjInStorage();
+}

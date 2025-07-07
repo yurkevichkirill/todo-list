@@ -100,7 +100,7 @@ function displayDotsProjForm(dots, title){
 
     deleteBtn.addEventListener("click", () => {
         const projectBtn = dots.parentNode.previousElementSibling;
-        deleteBtnAction(projectBtn.textContent);
+        deleteBtnAction(projectBtn.textContentcdnpx);
         removeDotsMenu(dotsProjForm);
     })
 
