@@ -114,3 +114,19 @@ export function deleteTodo(todo){
     }
     saveProjInStorage();
 }
+
+export function addToFavours(todo){
+    for(let i = 0; i < projects.length; i++){
+        for(let j = 0; j < projects[i].todoItems.length; j++){
+            if(projects[i].todoItems[j] === todo){
+                if(projects[i].todoItems[j].isFavourite === false){
+                    projects[i].todoItems[j].isFavourite = true;
+                }
+                else{
+                    projects[i].todoItems[j].isFavourite = false;
+                }
+            }
+        }
+    }
+    saveProjInStorage();
+}
