@@ -16,7 +16,7 @@
     flex-direction: column;
 }
 
-.todo-main, .project-item, .todo-btns{
+.todo-main, .project-item, .todo-btns, .todo-start{
     display: flex;
 }
 
@@ -98,4 +98,85 @@
     hue-rotate(15deg) 
     brightness(118%) 
     contrast(119%);
+}
+
+.todo-main{
+    justify-content: space-between;
+}
+
+.todo-start{
+    gap: 4px;
+}
+
+.todo-title{
+    font-weight: bold;
+}
+
+.edit-btn{
+    background-color: rgb(128, 187, 255);
+}
+
+.delete-btn{
+    background-color: rgb(255, 60, 60);
+}
+
+.favour-btn{
+    background-color: rgb(248, 248, 248);
+}
+
+.delete-img, .edit-img{
+    filter: brightness(0) invert(1);
+}
+
+.non-favour{
+  filter: invert(75%) sepia(0%) saturate(0%) brightness(90%);
+}
+
+.todo-btns{
+    gap: 5px;
+}
+
+.todo-btns > button{
+    border: none;
+    border-radius: 3px;
+}
+
+.todo-info{
+    color: rgb(138, 138, 138);
+    font-size: 12px;
+}
+
+.todo-description{
+    background-color: rgba(253, 251, 109, 0.582);
+    font-style: italic;
+    padding: 1%;
+}
+
+.todo{
+    margin: 2% 4% 2% 4%;
+    background-color: rgb(248, 248, 248);
+    padding: 2%;
+    border-radius: 5px;
+    gap: 8px;
+}
+
+.project-head{
+    margin: 4% 4% 2% 4%;
+    font-size: 2em;
+}
+
+.menu{
+    gap: 5px;
+}
+
+.home-tabs button{
+    
+}
+
+.home{
+    margin: 6% 6% 2% 6%;
+}
+
+.projects{
+    margin: 2% 6% 6% 6%;
 }

@@ -69,9 +69,9 @@ function addItemForm(addItemBtn){
         <div class="formItem">
             <label for="priority">Priority</label>
             <select name="priority" id="priority">
-                <option value="low">Low</option>
-                <option value="medium" selected>Medium</option>
-                <option value="high">High</option>
+                <option value="Low">Low</option>
+                <option value="Medium" selected>Medium</option>
+                <option value="High">High</option>
             </select>
         </div>
         <div class="item-btns">
@@ -170,20 +170,25 @@ function createTaskDOM(todo){
     const todoDiv = document.createElement("div");
     todoDiv.className = "todo";
     todoDiv.id = `${todo.title}`;
+    addPriorityColor(todo, todoDiv);
 
     const todoMain = document.createElement("div");
     todoMain.className = "todo-main";
     todoDiv.appendChild(todoMain);
 
+    const todoStart = document.createElement("div");
+    todoStart.className = "todo-start";
+    todoMain.append(todoStart);
+
     const executed = document.createElement("div");
     executed.className = "executed";
     changeDoneStatus(todo, executed);
-    todoMain.appendChild(executed);
+    todoStart.appendChild(executed);
 
     const todoTitle = document.createElement("div");
     todoTitle.className = "todo-title";
     todoTitle.textContent = todo.title;
-    todoMain.appendChild(todoTitle);
+    todoStart.appendChild(todoTitle);
     
     const todoBtns = document.createElement("div");
     todoBtns.className = "todo-btns";
@@ -194,6 +199,7 @@ function createTaskDOM(todo){
     const editImg = document.createElement("img");
     editImg.src = editURL;
     editImg.alt = "edit";
+    editImg.className = "edit-img";
     editBtn.appendChild(editImg);
     todoBtns.appendChild(editBtn);
 
@@ -202,6 +208,7 @@ function createTaskDOM(todo){
     const deleteImg = document.createElement("img");
     deleteImg.src = deleteURL;
     deleteImg.alt = "delete";
+    deleteImg.className = "delete-img";
     deleteBtn.appendChild(deleteImg);
     todoBtns.appendChild(deleteBtn);
 
@@ -209,6 +216,7 @@ function createTaskDOM(todo){
     favourBtn.className = "favour-btn";
     const favourImg = document.createElement("img");
     favourImg.className = "favour-img";
+    favourImg.classList.add("non-favour");
     changeFavourColor(todo, favourImg);
     favourImg.src = favourURL;
     favourImg.alt = "favour";
@@ -306,16 +314,16 @@ function editItemForm(todo, todoDiv){
     prioritySelect.id = 'priority';
 
     const optionLow = document.createElement('option');
-    optionLow.value = 'low';
+    optionLow.value = 'Low';
     optionLow.textContent = 'Low';
 
     const optionMedium = document.createElement('option');
-    optionMedium.value = 'medium';
+    optionMedium.value = 'Medium';
     optionMedium.textContent = 'Medium';
     optionMedium.selected = true;
 
     const optionHigh = document.createElement('option');
-    optionHigh.value = 'high';
+    optionHigh.value = 'High';
     optionHigh.textContent = 'High';
 
     prioritySelect.append(optionLow, optionMedium, optionHigh);
@@ -430,10 +438,12 @@ function addToFavourDOM(todo, favourImg){
 
 function changeFavourColor(todo, favourImg){
     if(todo.isFavourite === true){
+        favourImg.classList.remove("non-favour");
         favourImg.classList.add("yellow-star");
     }
     else if (todo.isFavourite === false){
         favourImg.classList.remove("yellow-star");
+        favourImg.classList.add("non-favour");
     }
 }
 
@@ -463,6 +473,18 @@ function isDoneStatus(){
     isDone.src = check;
     isDone.className = "check";
     return isDone;
+}
+
+function addPriorityColor(todo, todoDiv){
+    if(todo.priority === "Low"){
+        todoDiv.style.borderLeft = "4px solid greenyellow";
+    }
+    else if(todo.priority === "Medium"){
+        todoDiv.style.borderLeft = "4px solid orange";
+    }
+    else if(todo.priority === "High"){
+        todoDiv.style.borderLeft = "4px solid red";
+    }
 }
 
 export function printAllTasks(){
