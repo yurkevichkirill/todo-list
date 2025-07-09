@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Spinnenkop DEMO';
+    src: url('SpinnenkopDEMO-Regular.woff2') format('woff2'),
+        url('SpinnenkopDEMO-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

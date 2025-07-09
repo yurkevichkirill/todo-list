@@ -7,6 +7,7 @@ export function createAllTasks(){
        <div class="menu">
             <div class="home">
                 <div class="home-header">Home</div>
+                <div class="underline"></div>
                 <div class="home-tabs">
                     <button class="all-tasks">All Tasks</button>
                     <button class="today">Today</button>
@@ -16,6 +17,7 @@ export function createAllTasks(){
             </div>
             <div class="projects">
                 <div class="projects-header">Projects</div>
+                <div class="underline"></div>
                 <div class="projects-tabs"></div>
                 <button class="add-project">Add Project</button>
             </div>
