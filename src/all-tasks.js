@@ -1,5 +1,6 @@
 import { printProjects, allTasksDOM } from "./addProjectDOM";
 import { printAllTasks } from "./addItemDOM";
+import plus from "./icons/plus.svg";
 
 export function createAllTasks(){
     const app = document.querySelector(".app");
@@ -19,7 +20,10 @@ export function createAllTasks(){
                 <div class="projects-header">Projects</div>
                 <div class="underline"></div>
                 <div class="projects-tabs"></div>
-                <button class="add-project">Add Project</button>
+                <div class="add-project-div">
+                    <img src=${plus} alt="plus" class="plus">
+                    <button class="add-project">Add Project</button>
+                </div>
             </div>
         </div>
         <div class="todo-work">

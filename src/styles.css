@@ -29,12 +29,12 @@ body{
     border-radius: 5px;
 }
 
-.dots-project-form, .menu, .home, .home-tabs, .projects, .projects-tabs, .todo, .tasks{
+.dots-project-form, .menu, .home, .home-tabs, .projects, .projects-tabs, .todo, .tasks, .add-form{
     display: flex;
     flex-direction: column;
 }
 
-.todo-main, .project-item, .todo-btns, .todo-start{
+.todo-main, .project-item, .todo-btns, .todo-start, .add-project-div, .add-project-btns{
     display: flex;
 }
 
@@ -47,6 +47,10 @@ body{
 }
 
 .dots{
+    height: 30px;
+}
+
+.plus{
     height: 30px;
 }
 
@@ -212,7 +216,7 @@ body{
 .underline{
     height: 2px;
     background-color: black;
-    margin: 0 0 10% 0;
+    margin: 0 0 0 0;
 }
 
 .home-tabs > button, .projects-tabs button, .add-project{
@@ -221,6 +225,7 @@ body{
 
 .home-tabs, .projects-tabs{
     gap: 0.5em;
+    margin-top: 10%;
 }
 
 .add-project{
@@ -241,7 +246,7 @@ body{
     text-align: left;
 }
 
-.project-item button{
+.project-item>button{
     border: none;
     background-color: white;
     border-top-left-radius: 5px;
@@ -268,4 +273,80 @@ body{
 
 .project-item:hover > button{
     background-color: rgb(248, 248, 248);
+}
+
+.dots-project-form{
+    background-color: rgb(248, 248, 248);
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+.dots-project-form button{
+    padding: 5px;
+    border: none;
+    background-color: white;
+}
+
+.dots-project-form button:hover{
+    background-color: rgb(248, 248, 248);
+    padding: 5px;
+}
+
+.add-project{
+    background-color: white;
+    border: none;
+    border-radius: 3px;
+    text-align: left;
+}
+
+.add-project-div{
+    margin-top: 10px;
+    padding-left: 5%;
+    border-radius: 5px;
+    padding-top: 0;
+    align-items:end;
+}
+
+.add-project-div button{
+    margin: 0;
+}
+
+.add-project-div:hover, .add-project-div:hover > button{
+    background-color: rgb(248, 248, 248);
+}
+
+.add-project-div > button:hover, .add-project-div:hover{
+    background-color: rgb(248, 248, 248);
+}
+
+.add-form{
+    gap: 5px;
+}
+
+.add-project-btns{
+    gap: 5px;
+}
+
+.add-project-btns button{
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 3px;
+    font-size: 1.2em;
+}
+
+.add-project-btns button:first-child:hover{
+    background-color: yellowgreen;
+}
+
+.add-project-btns button:last-child:hover{
+    background-color: red;
+}
+
+.add-form input{
+    margin-top: 10px;
+    font-size: 1.5em;
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 92%;
 }

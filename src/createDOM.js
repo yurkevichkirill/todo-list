@@ -1,9 +1,9 @@
 import { addProjectForm } from "./addProjectDOM";
 
 export function addProjectDOM(){
-    const addProjectBtn = document.querySelector(".add-project");
-    addProjectBtn.addEventListener("click", () => {
-        addProjectForm(addProjectBtn);
+    const addProjectDiv = document.querySelector(".add-project-div");
+    addProjectDiv.addEventListener("click", () => {
+        addProjectForm(addProjectDiv);
     });
 
 }

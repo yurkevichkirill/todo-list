@@ -2,21 +2,23 @@ import { projects, Project, addProject, fillProjects, deleteProject, getProjectB
 import { addItemDOM, printAllTasks, printTodos } from "./addItemDOM";
 import dots from "./icons/dots-vertical.svg";
 
-export function addProjectForm(addProjectBtn){
+export function addProjectForm(addProjectDiv){
     if(isAddProjActive()){
         return;
     }
-    const parentDiv = addProjectBtn.parentNode;
+    const parentDiv = addProjectDiv.parentNode;
 
     const addProjectForm = document.createElement("div");
     addProjectForm.className = "add-form";
-    parentDiv.insertBefore(addProjectForm, addProjectBtn);
+    parentDiv.insertBefore(addProjectForm, addProjectDiv);
 
     const inputProject = document.createElement("input");
+    inputProject.id = "input-project-name";
     inputProject.placeholder = "Enter project's name";
     addProjectForm.appendChild(inputProject);
 
     const btnDiv = document.createElement("div");
+    btnDiv.className = "add-project-btns";
     addProjectForm.appendChild(btnDiv);
 
     const add = document.createElement("button");
@@ -73,27 +75,31 @@ function createNewProjectDOM(newProject){
 
 function addDotsAction(dots, title){
     dots.addEventListener("click", () => {
-        if(isDotsProjFormActive(title)){
-            document.querySelector(`#${title}-dots-menu`).remove();
+        if(isDotsProjFormActive()){
+            document.querySelector(`#dots-menu`).remove();
         }
         else{
             displayDotsProjForm(dots, title);
         }
+
     });
 }
 
 function displayDotsProjForm(dots, title){
     const dotsProjForm = document.createElement("div");
     dotsProjForm.className = "dots-project-form";
-    dotsProjForm.id = `${title}-dots-menu`;
+    dotsProjForm.id = `dots-menu`;
 
     const renameBtn = document.createElement("button");
     renameBtn.textContent = "Rename";
 
     renameBtn.addEventListener("click", () => {
         renameBtnAction(title);
-        removeDotsMenu(dotsProjForm);
+        removeDotsMenu();
     });
+
+    const underline = document.createElement("div");
+    underline.className = "underline";
 
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Delete";
@@ -101,17 +107,18 @@ function displayDotsProjForm(dots, title){
     deleteBtn.addEventListener("click", () => {
         const projectBtn = dots.parentNode.previousElementSibling;
         deleteBtnAction(projectBtn.textContent);
-        removeDotsMenu(dotsProjForm);
-    })
+        removeDotsMenu();
+    });
 
-    dotsProjForm.appendChild(renameBtn);
-    dotsProjForm.appendChild(deleteBtn);
+    dotsProjForm.append(renameBtn, underline, deleteBtn);
 
     dots.after(dotsProjForm);
 }
 
-function removeDotsMenu(dotsProjForm){
-    dotsProjForm.remove();
+function removeDotsMenu(){
+    if(document.querySelector(".dots-project-form")){
+        document.querySelector(".dots-project-form").remove();
+    }
 }
 
 function deleteBtnAction(title){
@@ -189,8 +196,8 @@ function removeRenameForm(title){
     document.querySelector(`.${title}-rename-form`).remove();
 }
 
-function isDotsProjFormActive(title){
-    if(document.querySelector(`#${title}-dots-menu`)){
+function isDotsProjFormActive(){
+    if(document.querySelector(`#dots-menu`)){
         return true;
     }
     return false;
