@@ -88,7 +88,7 @@ function addItemForm(addItemBtn){
         </div>
         <div class="item-btns">
             <button class="item-add" type=submit>Add</button>
-            <button class="item-cancel" type=reset>Cancel</button>
+            <button class="item-cancel-add" type=reset>Cancel</button>
         </div>
     </form>
     `
@@ -106,7 +106,7 @@ function isAddItemActive(){
 }
 
 function addItemCancel(){
-    const cancel = document.querySelector(".item-cancel");
+    const cancel = document.querySelector(".item-cancel-add");
     cancel.addEventListener("click", () => {
         removeAddItemForm();
     });
@@ -359,7 +359,7 @@ function editItemForm(todo, todoDiv){
     editButton.textContent = 'Edit';
 
     const cancelButton = document.createElement('button');
-    cancelButton.className = 'item-cancel';
+    cancelButton.className = 'item-cancel-edit';
     cancelButton.type = 'reset';
     cancelButton.textContent = 'Cancel';
 
@@ -386,7 +386,7 @@ function isEditItemActive(){
 }
 
 function editItemCancel(){
-    const cancel = document.querySelector(".item-cancel");
+    const cancel = document.querySelector(".item-cancel-edit");
     cancel.addEventListener("click", () => {
         removeEditItemForm();
     });

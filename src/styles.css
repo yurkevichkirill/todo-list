@@ -43,12 +43,12 @@ body div{
     border-radius: 5px;
 }
 
-.dots-project-form, .menu, .home, .home-tabs, .projects, .projects-tabs, .todo, .tasks, .add-form, .add-item{
+.dots-project-form, .menu, .home, .home-tabs, .projects, .projects-tabs, .todo, .tasks, .add-form, .rename-form, .add-item{
     display: flex;
     flex-direction: column;
 }
 
-.todo-main, .project-item, .todo-btns, .todo-start, .add-project-div, .add-project-btns, .item-btns, .edit-project-div{
+.todo-main, .project-item, .todo-btns, .todo-start, .add-project-div, .add-project-btns, .item-btns, .edit-project-div, .home-div{
     display: flex;
 }
 
@@ -226,6 +226,7 @@ body div{
 .home-header, .projects-header{
     font-family: "Spinnenkop";
     font-size: 3em;
+    font-weight: bold;
 }
 
 .underline{
@@ -257,6 +258,14 @@ body div{
     padding-left: 10%;
     font-family: 'Caroni-Regular';
     font-size: 2em;
+}
+
+.home-tabs div:hover, .home-tabs div:hover > button{
+    background-color: rgb(248, 248, 248);
+}
+
+.home-tabs div{
+    border-radius: 5px;
 }
 
 .project-item{
@@ -342,7 +351,7 @@ body div{
     background-color: rgb(248, 248, 248);
 }
 
-.add-form{
+.add-form, .rename-form{
     gap: 5px;
 }
 
@@ -365,7 +374,7 @@ body div{
     background-color: red;
 }
 
-.add-form input{
+.add-form input, .rename-form input{
     margin-top: 10px;
     font-size: 1.5em;
     border: 2px solid black;
@@ -391,11 +400,11 @@ body div{
     background-color: rgb(248, 248, 248);
 }
 
-.add-item{
+.add-item, .edit-item{
     margin: 2% 4% 4% 4%;
 }
 
-.add-item > form{
+.add-item > form, .edit-item > form{
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -408,11 +417,25 @@ body div{
     font-family: 'Caroni-Regular';
 }
 
+.edit-item .formItem label, .edit-item .formItem input, .edit-item .formItem select{
+    font-size: 1.5em;
+    font-family: 'Caroni-Regular';
+}
+
 .add-item .formItem label{
     color:rgba(0, 0, 0, 0.822);
 }
 
+.edit-item .formItem label{
+    color:rgba(0, 0, 0, 0.822);
+}
+
 .add-item .formItem input, .add-item .formItem select{
+    border-radius: 5px;
+    height: 40px;
+}
+
+.edit-item .formItem input, .edit-item .formItem select{
     border-radius: 5px;
     height: 40px;
 }
@@ -422,13 +445,22 @@ body div{
     flex-direction: column;
 }
 
+.edit-item .formItem{
+    display: flex;
+    flex-direction: column;
+}
+
+form:hover{
+    background-color: rgb(248, 248, 248);
+}
+
 .item-btns{
     align-items: center;
     justify-content: center;
     gap: 10px;
 }
 
-.item-btns button{
+.item-btns button, .add-project-btns button{
     font-size: 1.5em;
     background-color: white;
     border: none;
@@ -438,10 +470,55 @@ body div{
     font-weight: bold;
 }
 
-.item-btns button:first-child{
+.item-btns button:first-child, .add-project-btns button:first-child{
     background-color: yellowgreen;
 }
 
-.item-btns button:last-child{
+.item-btns button:last-child, .add-project-btns button:last-child{
     background-color: rgb(255, 98, 98);
 }
+
+.project-head{
+    background-color: pink;
+    border-radius: 5px;
+}
+
+@media (width <= 870px){
+    .app{
+        margin: 5%;
+        display: flex;
+        flex-direction: column;
+        gap: 1%;
+    }
+
+    .menu{
+        gap: 0;
+    }
+
+    .home, .projects{
+        margin: 1% 4% 1% 4%;
+    }
+
+    .home-tabs, .projects-tabs{
+        margin-top: 2%;     
+    }
+
+    .project-head{
+        margin: 1% 4% 1% 4%;
+    }
+
+    .todo{
+        margin: 1%;
+        gap: 2px;
+        padding: 1%;
+    }
+}
+
+.home-img{
+    height: 30px;
+}
+
+.home-div{
+    align-items: center;
+}
+

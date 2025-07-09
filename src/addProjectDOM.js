@@ -138,6 +138,7 @@ function renameProjectForm(title){
 
     const renameProjectForm = document.createElement("div");
     renameProjectForm.className = `${title}-rename-form`;
+    renameProjectForm.classList.add("rename-form");
     parentDiv.after(renameProjectForm);
 
     const inputProject = document.createElement("input");
@@ -147,6 +148,7 @@ function renameProjectForm(title){
     inputProject.focus();
 
     const btnDiv = document.createElement("div");
+    btnDiv.className = "add-project-btns";
     renameProjectForm.appendChild(btnDiv);
 
     const rename = document.createElement("button");
@@ -259,7 +261,7 @@ export function getProjects(){
 }
 
 export function allTasksDOM(){
-    const allTasksBtn = document.querySelector(".all-tasks");
+    const allTasksBtn = document.querySelector(".all-tasks-div");
     allTasksBtn.addEventListener("click", () => {
         printAllTasks();
     });

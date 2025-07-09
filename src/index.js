@@ -8,14 +8,14 @@ import { createWeekTasks } from "./week.js";
 createAllTasks();
 addProjectDOM();
 
-document.querySelector(".today").addEventListener("click", () => {
+document.querySelector(".today-div").addEventListener("click", () => {
     createTodayTasks();
 });
 
-document.querySelector(".week").addEventListener("click", () => {
+document.querySelector(".week-div").addEventListener("click", () => {
     createWeekTasks();
 });
 
-document.querySelector(".important").addEventListener("click", () => {
+document.querySelector(".important-div").addEventListener("click", () => {
     createFavourTasks();
 });
