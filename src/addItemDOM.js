@@ -4,6 +4,7 @@ import deleteURL from "./icons/delete.svg";
 import favourURL from "./icons/star.svg";
 import editURL from "./icons/text-box-edit-outline.svg";
 import check from "./icons/check.svg";
+import plus from "./icons/plus.svg";
 
 export function addItemDOM(projectBtn){
     createProjectHead(projectBtn);  
@@ -22,15 +23,26 @@ function createProjectHead(projectBtn){
 
 function createAddItemBtn(){ 
     const todoWork = getTodoWork();
+    const addItemDiv = document.createElement("div");
+    addItemDiv.className = "add-item-div";
+
+    const addItemImg = document.createElement("img");
+    addItemImg.src = plus;
+    addItemImg.alt = "plus";
+    addItemImg.className = "plus";
+
     const addItemBtn = document.createElement("button");
     addItemBtn.className = "add-task-btn";
     addItemBtn.textContent = "Add Task";
-    todoWork.appendChild(addItemBtn);
-    return addItemBtn;
+
+    addItemDiv.append(addItemImg, addItemBtn);
+
+    todoWork.appendChild(addItemDiv);
+    return addItemDiv;
 }
 
 function isAddItemBtn(){
-    if(document.querySelector(".add-task-btn")){
+    if(document.querySelector(".add-item-div")){
         return true;
     }
     return false;
@@ -56,11 +68,11 @@ function addItemForm(addItemBtn){
     <form>
         <div class="formItem">
             <label for="title">Title:</label>
-            <input type="text" id="title" required>
+            <input type="text" id="title" required placeholder = "What to do?">
         </div>
         <div class="formItem">
-            <label for="details">Datails(optional)</label>
-            <input type="text" id="details">
+            <label for="details">Datails(optional):</label>
+            <input type="text" id="details" placeholder = "eg: I'm just gonna procrastinate, aren't I?">
         </div>
         <div class="formItem">
             <label for="date">Date:</label>
@@ -502,8 +514,8 @@ export function printAllTasks(){
 }
 
 function removeAddTask(){
-    if(document.querySelector(".add-task-btn")){
-        document.querySelector(".add-task-btn").remove();
+    if(document.querySelector(".add-item-div")){
+        document.querySelector(".add-item-div").remove();
     }
 }
 
@@ -525,6 +537,7 @@ export function printFavours(){
         const todoDiv = createTaskDOM(task);
         tasks.appendChild(todoDiv);
     }
+    removeAddTask();
 }
 
 export function printToday(){
@@ -535,6 +548,7 @@ export function printToday(){
         const todoDiv = createTaskDOM(task);
         tasks.appendChild(todoDiv);
     }
+    removeAddTask();
 }
 
 export function printWeek(){
@@ -545,4 +559,5 @@ export function printWeek(){
         const todoDiv = createTaskDOM(task);
         tasks.appendChild(todoDiv);
     }
+    removeAddTask();
 }

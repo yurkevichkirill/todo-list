@@ -7,3 +7,21 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'PWSchoolScript';
+    src: url('PWSchoolScript.woff2') format('woff2'),
+        url('PWSchoolScript.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Caroni';
+    src: url('Caroni-Regular.woff2') format('woff2'),
+        url('Caroni-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
