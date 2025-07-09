@@ -48,7 +48,7 @@ body div{
     flex-direction: column;
 }
 
-.todo-main, .project-item, .todo-btns, .todo-start, .add-project-div, .add-project-btns, .item-btns{
+.todo-main, .project-item, .todo-btns, .todo-start, .add-project-div, .add-project-btns, .item-btns, .edit-project-div{
     display: flex;
 }
 
@@ -60,8 +60,13 @@ body div{
     width: 100%;
 }
 
+.edit-project-div{
+    align-items: center;
+    justify-content: center;
+}
+
 .dots{
-    height: 30px;
+    height: 80%;
 }
 
 .plus{
@@ -210,10 +215,6 @@ body div{
     gap: 5px;
 }
 
-.home-tabs button{
-    
-}
-
 .home{
     margin: 6% 6% 2% 6%;
 }
@@ -244,6 +245,8 @@ body div{
 
 .add-project{
     margin-top: 0.5em;
+    font-family: 'Caroni-Regular';
+    font-size: 2em;
 }
 
 .home-tabs button{
@@ -252,12 +255,15 @@ body div{
     border-radius: 5px;
     text-align: left;
     padding-left: 10%;
+    font-family: 'Caroni-Regular';
+    font-size: 2em;
 }
 
 .project-item{
     background-color: white;
     border-radius: 5px;
     text-align: left;
+    justify-content: center;
 }
 
 .project-item>button{
@@ -267,6 +273,8 @@ body div{
     border-bottom-left-radius: 5px;
     text-align: left;
     padding-left: 10%;
+    font-family: 'Caroni-Regular';
+    font-size: 2em;
 }
 
 .home-tabs button:hover{
@@ -319,7 +327,7 @@ body div{
     padding-left: 5%;
     border-radius: 5px;
     padding-top: 0;
-    align-items:end;
+    align-items:center;
 }
 
 .add-project-div button{
