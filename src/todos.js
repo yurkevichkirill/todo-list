@@ -162,3 +162,14 @@ export function getCurrentWeek(){
     sortTasksByDate(todos);
     return todos.filter((todo) => isThisWeek(todo.dueDate)) || [];
 }
+
+export function isTaskUnique(title){
+    for(let i = 0; i < projects.length; i++){
+        for(let j = 0; j < projects[i].todoItems.length; j++){
+            if(projects[i].todoItems[j].title === title){
+                return false;
+            }
+        }
+    }
+    return true;
+}

@@ -1,4 +1,4 @@
-import { ToDoItem, addToDo, getProjectByTitle, getAllTasks, sortTasksByDate, editTodo, deleteTodo, addToFavours, getFavours, changeDone, getToday, getCurrentWeek} from "./todos";
+import { ToDoItem, addToDo, getProjectByTitle, getAllTasks, sortTasksByDate, editTodo, deleteTodo, addToFavours, getFavours, changeDone, getToday, getCurrentWeek, isTaskUnique} from "./todos";
 import { getTitle } from "./addProjectDOM";
 import deleteURL from "./icons/delete.svg";
 import favourURL from "./icons/star.svg";
@@ -128,6 +128,14 @@ function createTodoDOM(event){
     event.preventDefault();
 
     const titleInput = document.querySelector("#title").value;
+    if(!isTaskUnique(titleInput)){
+        errorMessage();
+        return;
+    }
+
+    if(isTitleBlank()){
+        return;
+    }
     const descriptionInput = document.querySelector("#details").value;
     const dateInput = document.querySelector("#date").value;
     const priorityInput = document.querySelector("#priority").value;
@@ -142,6 +150,24 @@ function createTodoDOM(event){
     printTodos();
 
     removeAddItemForm();
+}
+
+function errorMessage(){
+    const addDiv = document.querySelector(".add-item");
+    const error = document.createElement("div");
+    error.className = "error";
+    error.textContent = "Enter enother title";
+    addDiv.append(error);
+    setTimeout(() => {
+        error.remove();
+    }, 3000);
+}
+
+function isTitleBlank(title){
+    if(title === ""){
+        return true;
+    }
+    return false;
 }
 
 function clearProjectTodos(){
@@ -374,6 +400,7 @@ function editItemForm(todo, todoDiv){
     );
 
     todoDiv.after(itemFormDiv);
+    titleInput.focus();
     editItemCancel();
     formEditItem(todo, todoDiv);
 }

@@ -160,6 +160,10 @@ body div{
     background-color: rgb(128, 187, 255);
 }
 
+.edit-btn:hover, .delete-btn:hover{
+    opacity: 0.8;
+}
+
 .delete-btn{
     background-color: rgb(255, 60, 60);
 }
@@ -255,7 +259,7 @@ body div{
     background-color: white;
     border-radius: 5px;
     text-align: left;
-    padding-left: 10%;
+    padding-left: 5%;
     font-family: 'Caroni-Regular';
     font-size: 2em;
 }
@@ -474,12 +478,39 @@ form:hover{
     background-color: yellowgreen;
 }
 
+.item-btns button:first-child:hover, .add-project-btns button:first-child:hover{
+    background-color: green;
+}
+
 .item-btns button:last-child, .add-project-btns button:last-child{
     background-color: rgb(255, 98, 98);
 }
 
+.item-btns button:last-child:hover, .add-project-btns button:last-child:hover{
+    background-color: red;
+}
+
 .project-head{
     background-color: pink;
+    border-radius: 5px;
+}
+
+.home-img{
+    height: 30px;
+}
+
+.home-div{
+    align-items: center;
+    padding-left: 10%;
+}
+
+.error{
+    font-size: 2em;
+    background-color: rgb(255, 98, 98);
+    color: white;
+    font-weight: bold;
+    margin-top: 2%;
+    padding: 2%;
     border-radius: 5px;
 }
 
@@ -513,12 +544,3 @@ form:hover{
         padding: 1%;
     }
 }
-
-.home-img{
-    height: 30px;
-}
-
-.home-div{
-    align-items: center;
-}
-

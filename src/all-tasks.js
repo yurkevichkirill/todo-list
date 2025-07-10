@@ -4,7 +4,7 @@ import plus from "./icons/plus.svg";
 import all_tasks from "./icons/all-tasks.svg";
 import today from "./icons/today.svg";
 import week from "./icons/week.svg";
-import star from "./icons/star.svg";
+import star from "./icons/star-outline.svg";
 
 export function createAllTasks(){
     const app = document.querySelector(".app");
