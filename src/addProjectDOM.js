@@ -39,6 +39,7 @@ function addButtonProject(add, inputProject, addProjectForm){
             return;
         }
         if(!isUnique(projectTitle, projects)){
+            errorMessageAdd()
             return;
         }
         const newProject = new Project(projectTitle);
@@ -46,6 +47,18 @@ function addButtonProject(add, inputProject, addProjectForm){
         appendNewProject(newProject);
         cleanAddProjectDOM(addProjectForm);
     });
+}
+
+function errorMessageAdd(){
+    const addDiv = document.querySelector(".add-project-div");
+    const error = document.createElement("div");
+    error.className = "error";
+    error.textContent = "Enter enother title";
+    const parent = addDiv.parentNode;
+    parent.insertBefore(error, addDiv);
+    setTimeout(() => {
+        error.remove();
+    }, 3000);
 }
 
 function appendNewProject(newProject){
@@ -128,6 +141,7 @@ function deleteBtnAction(title){
 
 function renameBtnAction(title){
     renameProjectForm(title);
+    
 }
 
 function renameProjectForm(title){
@@ -162,6 +176,17 @@ function renameProjectForm(title){
     btnDiv.appendChild(cancel);
 }
 
+function errorMessageRename(rename){
+    const renameDiv = rename.parentNode.parentNode;
+    const error = document.createElement("div");
+    error.className = "error";
+    error.textContent = "Enter enother title";
+    renameDiv.append(error);
+    setTimeout(() => {
+        error.remove();
+    }, 3000);
+}
+
 function isRenameProjActive(title){
     if(document.querySelector(`.${title}-rename-form`)){
         return true;
@@ -172,6 +197,10 @@ function isRenameProjActive(title){
 function renameProjectAction(rename, title){
     rename.addEventListener("click", () => {
         const newTitle = document.querySelector(`#${title}-rename-inp`).value;
+        if(!isUnique(title, projects)){
+            errorMessageRename(rename);
+            return;
+        }
         renameProject(title, newTitle);
         renameProjectHead(title, newTitle);    
         renameBtn(title, newTitle);

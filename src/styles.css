@@ -514,6 +514,10 @@ form:hover{
     border-radius: 5px;
 }
 
+.input-project-name, .rename-form input{
+    font-family: 'Caroni-Regular';
+}
+
 @media (width <= 870px){
     .app{
         margin: 5%;
