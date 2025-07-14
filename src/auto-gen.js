@@ -10,7 +10,7 @@ export function generateExample(){
                 "title": "run",
                 "description": "3 rings at medium tempo",
                 "dueDate": "2025-07-14",
-                "priority": "High",
+                "priority": "Low",
                 "isDone": true,
                 "isFavourite": false
             },
